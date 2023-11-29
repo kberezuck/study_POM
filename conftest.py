@@ -1,10 +1,11 @@
-from selenium import webdriver
-from selenium.webdriver.common.action_chains import ActionChains
 import pytest
-from pages.create_new_account_page import CreateNewAccountPage
-from pages.watches_page import WhatchesPage
-from pages.shopping_cart_page import ShoppingCartPage
+from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.action_chains import ActionChains
+
+from pages.create_new_account_page import CreateNewAccountPage
+from pages.shopping_cart_page import ShoppingCartPage
+from pages.watches_page import WhatchesPage
 
 
 @pytest.fixture()
@@ -16,6 +17,7 @@ def driver():
     yield chrome_driver, actions_element
     chrome_driver.quit()
 
+
 @pytest.fixture()
 def watches_page(driver):
     chrome_driver, actions_element = driver
@@ -26,6 +28,7 @@ def watches_page(driver):
 def create_new_account_page(driver):
     chrome_driver, actions_element = driver
     return CreateNewAccountPage(chrome_driver, actions_element)
+
 
 @pytest.fixture()
 def shopping_cart_page(driver):

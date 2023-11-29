@@ -19,9 +19,3 @@ def add_product_to_a_shopping_cart(watches_page):
     watches_page.move_cursor_to_gear_shop_category_and_click_on_watches()
     watches_page.add_product_to_a_shopping_cart()
     watches_page.check_that_button_had_added_status()
-
-
-
-
-
-

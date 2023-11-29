@@ -1,11 +1,9 @@
-import time
+from selenium.webdriver.support import expected_conditions as EC
 
 from pages.base_page import BasePage
-from selenium.webdriver.support import expected_conditions as EC
 
 
 class ShoppingCartPage(BasePage):
-
     page_url = '/checkout/cart/'
 
     here_link = ('xpath', "//div[@class = 'cart-empty']//a")
@@ -18,23 +16,17 @@ class ShoppingCartPage(BasePage):
 
     loading_state = ('xpath', "//div[@class ='loading-mask']")
 
-
-
-
     def check_shopping_cart_empty_block_is_displayed(self):
         empty_cart_text = self.driver.find_element(*self.empty_cart_block).text
         print(empty_cart_text)
         self.wait.until(EC.text_to_be_present_in_element(self.empty_cart_block, empty_cart_text))
 
-
     def click_the_here_link(self):
         self.wait.until(EC.element_to_be_clickable(self.here_link))
         self.find_and_click_element(self.here_link)
 
-
     def check_the_here_link_redirects_to_main_page(self):
         self.wait.until(EC.url_to_be('https://magento.softwaretestingboard.com/'))
-
 
     def check_shopping_cart_has_products(self):
         self.wait.until(EC.visibility_of_element_located(self.shopping_cart_table))
@@ -51,11 +43,4 @@ class ShoppingCartPage(BasePage):
         self.wait.until(EC.visibility_of_element_located(self.finish_subtotal))
         finish_subtotal = self.driver.find_element(*self.finish_subtotal).text
         print(finish_subtotal)
-        assert initial_subtotal != finish_subtotal , 'update button does not work'
-
-
-
-
-
-
-
+        assert initial_subtotal != finish_subtotal, 'update button does not work'

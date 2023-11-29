@@ -12,7 +12,8 @@ class WhatchesPage(BasePage):
     alert = ('xpath', "//div[@role='alert']")
     gear_shop_category = ('xpath', "//li[@class = 'level0 nav-4 category-item level-top parent ui-menu-item']")
     watches_shop_category_from_gear = (
-    'xpath', "//li[@class = 'level0 nav-4 category-item level-top parent ui-menu-item']//li[contains(@class, 'last')]")
+        'xpath',
+        "//li[@class = 'level0 nav-4 category-item level-top parent ui-menu-item']//li[contains(@class, 'last')]")
 
     second_product_card = ('xpath', "//ol[@class = 'products list items product-items']/li[2]")
     add_to_cart_button = ('xpath', '//form[@data-product-sku="24-WG03"]/button')
@@ -41,7 +42,6 @@ class WhatchesPage(BasePage):
         self.wait.until(EC.element_to_be_clickable(self.add_to_wishlist_button))
         self.find_and_click_element(self.add_to_wishlist_button)
 
-
     def move_cursor_to_gear_shop_category_and_click_on_watches(self):
         self.wait.until(EC.element_to_be_clickable(self.gear_shop_category))
         self.actions.move_to_element(self.driver.find_element(*self.gear_shop_category)) \
@@ -56,26 +56,19 @@ class WhatchesPage(BasePage):
     def check_the_alert_message_is_displayed_on_whishlist_page(self):
         self.wait.until(EC.presence_of_element_located(self.alert))
         self.wait.until(
-            EC.text_to_be_present_in_element(self.alert, 'Didi Sport Watch has been added to your Wish List. Click here to continue shopping.'))
+            EC.text_to_be_present_in_element(self.alert,
+                                             'Didi Sport Watch has been added to your Wish List. Click here to continue shopping.'))
         print(self.driver.find_element(*self.alert).text)
-
 
     def get_current_state_of_shopping_cart_counter(self):
         self.find_and_click_element(self.counter_of_shopping_cart)
         current_counter = self.driver.find_element(*self.counter_of_shopping_cart).text
         print(current_counter)
 
-
     def add_product_to_a_shopping_cart(self):
         self.actions.move_to_element(self.driver.find_element(*self.second_product_card)).perform()
         self.wait.until(EC.element_to_be_clickable(self.add_to_cart_button))
         self.find_and_click_element(self.add_to_cart_button)
 
-
     def check_that_button_had_added_status(self):
         self.wait.until(EC.text_to_be_present_in_element(self.added_status_of_cart_button, 'Added'))
-
-
-
-
-

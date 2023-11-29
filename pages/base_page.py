@@ -1,10 +1,10 @@
-from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
 
 class BasePage:
-
     host_url = 'https://magento.softwaretestingboard.com'
     page_url = None
 
@@ -17,7 +17,7 @@ class BasePage:
         if self.page_url:
             self.driver.get(f'{self.host_url}{self.page_url}')
         else:
-            raise NotImplementedError ('Can not open page')
+            raise NotImplementedError('Can not open page')
 
     def find(self, locator):
         return self.driver.find_elements(*locator)
@@ -32,11 +32,3 @@ class BasePage:
     def find_and_click_element(self, locator):
         self.wait.until(EC.element_to_be_clickable(locator))
         self.driver.find_element(*locator).click()
-
-
-
-
-
-
-
-
